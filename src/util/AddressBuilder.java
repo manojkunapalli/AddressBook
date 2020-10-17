@@ -39,7 +39,7 @@ public class AddressBuilder implements AddressOperations {
                     break;
                 case 6 :
                     System.out.println("Display Address Book..............");
-                    addressBuilder.readAddress();
+                    addressBuilder.displayAddress();
                     break;
                 case 7 :
                     System.out.println("Back to Home");
@@ -73,10 +73,10 @@ public class AddressBuilder implements AddressOperations {
     }
 
     @Override
-    public void readAddress() {
+    public void displayAddress() {
         int count = 1;
         for(Map.Entry<String,AddressBook> map : addressBook.entrySet()) {
-            System.out.println("Address Book 1 : "+map.getKey());
+            System.out.println("Address Book "+count+" Name : "+map.getKey());
             System.out.println(map.getValue());
         }
     }
