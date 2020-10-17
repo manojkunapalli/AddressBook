@@ -8,9 +8,10 @@ package util;
  * zip
  * phone number*/
 public class AddressBook {
-    String firstName,lastName,address,city,state,zipCode,phoneNumber;
+    String firstName,lastName,address,city,state,phoneNumber;
+    int zipCode;
 
-    public AddressBook(String firstName,String lastName,String address,String city,String state,String zipCode,String phoneNumber) {
+    public AddressBook(String firstName,String lastName,String address,String city,String state,int zipCode,String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -60,11 +61,11 @@ public class AddressBook {
         this.state = state;
     }
 
-    public String getZipCode() {
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -79,13 +80,13 @@ public class AddressBook {
     @Override
     public String toString() {
         return "*********Address Book************"+
-                "\n First Name = "+getFirstName()+
-                "\n Last Name = "+getLastName()+
-                "\n Address = "+getAddress()+
-                "\n city = "+getCity()+
-                "\n state = "+getState()+
-                "\n zip code = "+getZipCode()+
-                "\n phone number = "+getPhoneNumber()+"\n";
+                "\n First Name : "+getFirstName()+
+                "\n Last Name : "+getLastName()+
+                "\n Address : "+getAddress()+
+                "\n city : "+getCity()+
+                "\n state : "+getState()+
+                "\n zip code : "+getZipCode()+
+                "\n phone number : "+getPhoneNumber()+"\n";
     }
 
 }
