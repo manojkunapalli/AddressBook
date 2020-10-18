@@ -12,7 +12,7 @@ public class AddressBuilder implements AddressOperations {
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Address Book");
+        System.out.println("Welcome to Address Book Application");
 
         AddressBuilder addressBuilder = new AddressBuilder();
 
@@ -27,6 +27,7 @@ public class AddressBuilder implements AddressOperations {
                     break;
                 case 2 :
                     System.out.println("Update Address Book..............");
+                    addressBuilder.updateAddress();
                     break;
                 case 3 :
                     System.out.println("Delete Address Book..............");
@@ -52,24 +53,39 @@ public class AddressBuilder implements AddressOperations {
 
     @Override
     public void createAddress() {
-        System.out.println("Enter the Name of Address Book = ");
-        String addressBookName = input.nextLine();
-        System.out.println("Enter the First Name = ");
-        String firstName = input.nextLine();
-        System.out.println("Enter the Last Name = ");
-        String lastName = input.nextLine();
-        System.out.println("Enter the Address = ");
-        String address = input.nextLine();
-        System.out.println("Enter the City = ");
-        String city = input.nextLine();
-        System.out.println("Enter the State = ");
-        String state = input.nextLine();
-        System.out.println("Enter the zipCode = ");
-        int zipCode = input.nextInt();
-        System.out.println("Enter the phone Number = ");
-        String phoneNumber = input.nextLine();
+        List<String> list = new ArrayList<>();
 
-        addressBook.put(addressBookName,new AddressBook(firstName,lastName,address,city,state,zipCode,phoneNumber));
+        for(int i=0;i<8;i++) {
+            switch (i){
+                case 0:
+                    System.out.println("Enter the Name of Address Book = ");
+                    break;
+                case 1:
+                    System.out.println("Enter the First Name = ");
+                    break;
+                case 2:
+                    System.out.println("Enter the Last Name = ");
+                    break;
+                case 3:
+                    System.out.println("Enter the Address = ");
+                    break;
+                case 4:
+                    System.out.println("Enter the City = ");
+                    break;
+                case 5:
+                    System.out.println("Enter the State = ");
+                    break;
+                case 6:
+                    System.out.println("Enter the zipCode = ");
+                    break;
+                case 7:
+                    System.out.println("Enter the Phone Number = ");
+                    break;
+            }
+            String field = getInput();
+            list.add(field);
+        }
+        addressBook.put(list.get(0),new AddressBook(list.get(1),list.get(2),list.get(3),list.get(4),list.get(5),Integer.parseInt(list.get(6)),list.get(7)));
     }
 
     @Override
@@ -78,16 +94,54 @@ public class AddressBuilder implements AddressOperations {
         for(Map.Entry<String,AddressBook> map : addressBook.entrySet()) {
             System.out.println("Address Book "+count+" Name : "+map.getKey());
             System.out.println(map.getValue());
+            count++;
         }
     }
 
     @Override
     public void updateAddress() {
-
+        System.out.println("Enter the Address book to Update = ");
+        String AddressBookName = getInput();
+        System.out.println("Enter Field to update ---> \n1.FirstName\n2.LastName\n3.Address\n4.City\n5.State\n6.ZipCode\n7.PhoneNumber\n");
+        int opt = input.nextInt();
+        switch (opt) {
+            case 1:
+                System.out.println("Enter the First Name = ");
+                addressBook.get(AddressBookName).firstName = getInput();
+                break;
+            case 2:
+                System.out.println("Enter the Last Name = ");
+                addressBook.get(AddressBookName).lastName = getInput();
+                break;
+            case 3:
+                System.out.println("Enter the Address = ");
+                addressBook.get(AddressBookName).address = getInput();
+                break;
+            case 4:
+                System.out.println("Enter the City = ");
+                addressBook.get(AddressBookName).city = getInput();
+                break;
+            case 5:
+                System.out.println("Enter the State = ");
+                addressBook.get(AddressBookName).state = getInput();
+                break;
+            case 6:
+                System.out.println("Enter the zipCode = ");
+                addressBook.get(AddressBookName).zipCode = Integer.parseInt(getInput());
+                break;
+            case 7:
+                System.out.println("Enter the Phone Number = ");
+                addressBook.get(AddressBookName).phoneNumber = getInput();
+                break;
+        }
     }
 
     @Override
     public void deleteAddress() {
 
+    }
+
+    public String getInput() {
+        return input.next() + input.nextLine();
     }
 }
