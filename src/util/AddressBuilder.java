@@ -31,6 +31,7 @@ public class AddressBuilder implements AddressOperations {
                     break;
                 case 3 :
                     System.out.println("Delete Address Book..............");
+                    addressBuilder.deleteAddress();
                     break;
                 case 4 :
                     System.out.println("Sort By Name : Address Book..............");
@@ -86,6 +87,11 @@ public class AddressBuilder implements AddressOperations {
             list.add(field);
         }
         addressBook.put(list.get(0),new AddressBook(list.get(1),list.get(2),list.get(3),list.get(4),list.get(5),Integer.parseInt(list.get(6)),list.get(7)));
+        if(addressBook.containsKey(list.get(0))) {
+            System.out.println("Address Book Created Successfully");
+        } else {
+            System.out.println("Address Book Creation unSuccessful");
+        }
     }
 
     @Override
@@ -101,44 +107,60 @@ public class AddressBuilder implements AddressOperations {
     @Override
     public void updateAddress() {
         System.out.println("Enter the Address book to Update = ");
-        String AddressBookName = getInput();
-        System.out.println("Enter Field to update ---> \n1.FirstName\n2.LastName\n3.Address\n4.City\n5.State\n6.ZipCode\n7.PhoneNumber\n");
-        int opt = input.nextInt();
-        switch (opt) {
-            case 1:
-                System.out.println("Enter the First Name = ");
-                addressBook.get(AddressBookName).firstName = getInput();
-                break;
-            case 2:
-                System.out.println("Enter the Last Name = ");
-                addressBook.get(AddressBookName).lastName = getInput();
-                break;
-            case 3:
-                System.out.println("Enter the Address = ");
-                addressBook.get(AddressBookName).address = getInput();
-                break;
-            case 4:
-                System.out.println("Enter the City = ");
-                addressBook.get(AddressBookName).city = getInput();
-                break;
-            case 5:
-                System.out.println("Enter the State = ");
-                addressBook.get(AddressBookName).state = getInput();
-                break;
-            case 6:
-                System.out.println("Enter the zipCode = ");
-                addressBook.get(AddressBookName).zipCode = Integer.parseInt(getInput());
-                break;
-            case 7:
-                System.out.println("Enter the Phone Number = ");
-                addressBook.get(AddressBookName).phoneNumber = getInput();
-                break;
+        String addressBookName = getInput();
+        if(addressBook.containsKey(addressBookName)) {
+            System.out.println("Enter Field to update ---> \n1.FirstName\n2.LastName\n3.Address\n4.City\n5.State\n6.ZipCode\n7.PhoneNumber\n");
+            int opt = input.nextInt();
+            switch (opt) {
+                case 1:
+                    System.out.println("Enter the First Name = ");
+                    addressBook.get(addressBookName).firstName = getInput();
+                    break;
+                case 2:
+                    System.out.println("Enter the Last Name = ");
+                    addressBook.get(addressBookName).lastName = getInput();
+                    break;
+                case 3:
+                    System.out.println("Enter the Address = ");
+                    addressBook.get(addressBookName).address = getInput();
+                    break;
+                case 4:
+                    System.out.println("Enter the City = ");
+                    addressBook.get(addressBookName).city = getInput();
+                    break;
+                case 5:
+                    System.out.println("Enter the State = ");
+                    addressBook.get(addressBookName).state = getInput();
+                    break;
+                case 6:
+                    System.out.println("Enter the zipCode = ");
+                    addressBook.get(addressBookName).zipCode = Integer.parseInt(getInput());
+                    break;
+                case 7:
+                    System.out.println("Enter the Phone Number = ");
+                    addressBook.get(addressBookName).phoneNumber = getInput();
+                    break;
+            }
+            System.out.println("Address Book Updated Successfully");
+        } else {
+            System.out.println("Entered Address Book is Not Found");
         }
-    }
+        }
 
     @Override
     public void deleteAddress() {
-
+        System.out.println("Enter the Address book to Delete = ");
+        String addressBookName = getInput();
+        if(addressBook.containsKey(addressBookName)){
+            addressBook.remove(addressBookName);
+            if(!addressBook.containsKey(addressBookName)) {
+                System.out.println("Address Book Deleted Successfully");
+            } else {
+                System.out.println("Address Book Deletion unSuccessful");
+            }
+        } else {
+            System.out.println("Entered Address Book is Not Found");
+        }
     }
 
     public String getInput() {
