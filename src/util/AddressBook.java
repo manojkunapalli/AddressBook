@@ -1,12 +1,5 @@
 package util;
 
-/*
- * firstName & lastName
- * address
- * city
- * state
- * zip
- * phone number*/
 public class AddressBook {
     String firstName,lastName,address,city,state,phoneNumber;
     int zipCode;

@@ -1,5 +1,7 @@
 package util;
 
+import AddressPack.AddressOperations;
+
 import java.util.*;
 
 public class AddressBuilder implements AddressOperations {
@@ -34,10 +36,11 @@ public class AddressBuilder implements AddressOperations {
                     addressBuilder.deleteAddress();
                     break;
                 case 4 :
-                    System.out.println("Sort By Name : Address Book..............");
+                    System.out.println("Sort By First Name...................");
+                    addressBuilder.sortByName();
                     break;
                 case 5 :
-                    System.out.println("Sort By ZipCode : Address Book..............");
+                    System.out.println("Sort By ZipCode ........................");
                     break;
                 case 6 :
                     System.out.println("Display Address Book..............");
@@ -55,7 +58,6 @@ public class AddressBuilder implements AddressOperations {
     @Override
     public void createAddress() {
         List<String> list = new ArrayList<>();
-
         for(int i=0;i<8;i++) {
             switch (i){
                 case 0:
@@ -145,13 +147,13 @@ public class AddressBuilder implements AddressOperations {
         } else {
             System.out.println("Entered Address Book is Not Found");
         }
-        }
+    }
 
     @Override
     public void deleteAddress() {
         System.out.println("Enter the Address book to Delete = ");
         String addressBookName = getInput();
-        if(addressBook.containsKey(addressBookName)){
+        if(addressBook.containsKey(addressBookName)) {
             addressBook.remove(addressBookName);
             if(!addressBook.containsKey(addressBookName)) {
                 System.out.println("Address Book Deleted Successfully");
@@ -165,5 +167,21 @@ public class AddressBuilder implements AddressOperations {
 
     public String getInput() {
         return input.next() + input.nextLine();
+    }
+
+    @Override
+    public void sortByName() {
+        TreeMap<String, AddressBook> treeMap = new TreeMap<>(addressBook);
+        int count=0;
+        for (Map.Entry<String, AddressBook> entry : treeMap.entrySet()) {
+            System.out.println("Address Book "+count+" Name : "+entry.getKey());
+            System.out.println(entry.getValue());
+            count++;
+        }
+    }
+
+    @Override
+    public void sortByZipcode() {
+
     }
 }
