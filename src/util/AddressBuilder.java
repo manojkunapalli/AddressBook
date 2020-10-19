@@ -4,7 +4,7 @@ import AddressPack.AddressOperations;
 
 import java.util.*;
 
-public class AddressBuilder implements AddressOperations {
+public class AddressBuilder implements AddressOperations{
 
     private Map<String,AddressBook> addressBook;
     static Scanner input;
@@ -41,6 +41,7 @@ public class AddressBuilder implements AddressOperations {
                     break;
                 case 5 :
                     System.out.println("Sort By ZipCode ........................");
+                    addressBuilder.sortByZipcode();
                     break;
                 case 6 :
                     System.out.println("Display Address Book..............");
@@ -182,6 +183,13 @@ public class AddressBuilder implements AddressOperations {
 
     @Override
     public void sortByZipcode() {
+        Map<Integer,AddressBook> sortedMap = new TreeMap<>();
+        for(Map.Entry<String,AddressBook> entry : addressBook.entrySet()){
+            sortedMap.put(entry.getValue().zipCode,entry.getValue());
+        }
 
+        for(Map.Entry<Integer,AddressBook> entry : sortedMap.entrySet()){
+            System.out.println(entry.getValue());
+        }
     }
 }
